@@ -1,23 +1,592 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "인터넷 가입",
+    "name": "당진 인터넷 전문센터",
+    "description": "2026년 최신 당진시 인터넷 가입 상품 및 요금 비교, 현금지원 혜택 정보 제공. 당진 지역 맞춤형 인터넷 솔루션을 찾으세요.",
+    "url": "https://www.example.com/dangjin-internet-guide-2026",
+    "telephone": "041-XXX-XXXX",
+    "areaServed": {
+      "@type": "State",
+      "name": "충청남도"
+    },
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "당진 인터넷 전문센터",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "충청남도 당진시 시청로 1",
+        "addressLocality": "당진시",
+        "addressRegion": "충청남도",
+        "postalCode": "31775",
+        "addressCountry": "KR"
+      }
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "당진 인터넷 상품 목록",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"기가인터넷 (1Gbps)"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"초고속 인터넷 (500Mbps)"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"일반 인터넷 (100Mbps)"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"인터넷+TV 결합 상품"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"인터넷+전화 결합 상품"}}
+      ]
+    }
+  }
+  </script>
+
+  <!-- Google Fonts: Noto Sans KR -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+
+  <style>
+    /* 기본 글꼴과 색상 조화로운 부드러운 톤 적용 */
+    body {
+      font-family: 'Noto Sans KR', 'Arial', sans-serif;
+      margin: 0; padding: 0;
+      background: #f7f9fc; /* 연한 배경색 */
+      color: #333333; /* 기본 텍스트 색상 */
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    header, section, footer {
+      max-width: 1000px; /* 최대 너비 확장 */
+      margin: 30px auto;
+      padding: 30px 25px; /* 패딩 증가 */
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* 그림자 강화 */
+      border-radius: 10px;
+    }
+    /* 헤더 */
+    header {
+      padding: 40px 25px;
+      text-align: center;
+      background: linear-gradient(135deg, #eaf2ff, #ffffff); /* 그라데이션 배경 */
+      border-bottom: 3px solid #0056b3; /* 강한 경계선 */
+    }
+    h1 {
+      color: #004085; /* 진한 파란색 제목 */
+      margin-top: 0;
+      margin-bottom: 0.2em;
+      font-size: 2.5rem; /* 제목 크기 키우기 */
+      font-weight: 800;
+    }
+    header p {
+      color: #555555;
+      font-size: 1.1rem;
+      font-weight: 400;
+      max-width: 700px;
+      margin: 10px auto;
+    }
+    h2 {
+      color: #0056b3; /* 중간 파란색 섹션 제목 */
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-top: 2em;
+      border-bottom: 2px solid #e0e7f1; /* 구분선 */
+      padding-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+    h3 {
+      color: #2c3e50; /* 어두운 회색 소제목 */
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+    }
+    p, li {
+      color: #444444;
+      font-size: 1rem;
+      margin-bottom: 1.2em;
+      line-height: 1.9;
+    }
+    /* 내비게이션 바 */
+    nav {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+      padding: 10px 20px;
+    }
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 0;
+      list-style: none;
+      justify-content: space-between;
+    }
+    nav li {
+      margin: 0;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #0056b3;
+      padding: 8px 12px;
+      transition: all 0.3s ease;
+      display: block;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background-color: #f0f8ff;
+      color: #004085;
+    }
+    /* 테이블 스타일 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    th, td {
+      border: 1px solid #e0e7f1;
+      padding: 15px;
+      text-align: left;
+    }
+    th {
+      background-color: #0056b3;
+      color: white;
+      font-weight: 700;
+      text-align: center;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    /* CTA 버튼 및 입력 양식 */
+    .input-section {
+      margin-top: 25px;
+      display: grid; /* Flex 대신 Grid로 레이아웃 변경 */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #34495e;
+      font-size: 0.95rem;
+    }
+    input[type="text"], input[type="tel"], input[type="email"], select, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+      border-color: #0056b3;
+      box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button.cta-btn {
+      background-color: #007bff; /* 푸른색 CTA 버튼 */
+      color: white;
+      padding: 16px 35px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      font-weight: 700;
+      box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+    }
+    button.cta-btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+    /* 그래프 스타일 */
+    .chart-container {
+      margin: 40px 0;
+      max-width: 100%;
+      overflow-x: auto;
+      background: #fafafa;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    /* FAQ 스타일 */
+    .faq .item {
+      border-bottom: 1px solid #e0e7f1;
+      padding: 18px 0;
+    }
+    .faq .item:last-child {
+      border-bottom: none;
+    }
+    .faq h3 {
+      cursor: pointer;
+      color: #2c3e50;
+      font-weight: 700;
+      margin-bottom: 8px;
+      position: relative;
+      padding-right: 30px;
+    }
+    .faq h3::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.2rem;
+      color: #007bff;
+    }
+    .faq h3.active::after {
+      content: '-';
+    }
+    .faq p {
+      margin: 0 0 15px 0;
+      color: #555;
+      display: none; /* 초기 상태 숨김 */
+    }
+    /* 링크 스타일 */
+    a.external-link {
+      color: #007bff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a.external-link:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+    /* 강조 텍스트 */
+    .highlight {
+      background-color: #fff3cd; /* 노란색 강조 */
+      color: #856404;
+      padding: 3px 6px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #6c757d;
+      margin-bottom: 20px;
+      border-left: 3px solid #007bff;
+      padding-left: 15px;
+      font-style: italic;
+    }
+
+    /* 반응형 디자인 */
+    @media (max-width: 768px) {
+      body { font-size: 15px; }
+      header { padding: 30px 15px; }
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.5rem; }
+      nav ul { flex-direction: column; }
+      nav a { text-align: center; }
+      .input-section { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script>
+    // FAQ toggle 기능
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqItems = document.querySelectorAll('.faq .item h3');
+      faqItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const p = item.nextElementSibling;
+          const isActive = item.classList.contains('active');
+          
+          // 모든 FAQ 항목 닫기
+          document.querySelectorAll('.faq .item p').forEach(pEl => pEl.style.display = 'none');
+          document.querySelectorAll('.faq .item h3').forEach(h3El => h3El.classList.remove('active'));
+
+          // 클릭된 항목만 토글
+          if (!isActive) {
+            p.style.display = 'block';
+            item.classList.add('active');
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <h1>2026년 당진 인터넷 가입 가이드: 가격 비교, 혜택, 추천 업체 정보</h1>
+    <p>당진시민을 위한 맞춤형 인터넷 가입 정보. 2026년 최신 요금제와 사은품, 현금지원 혜택을 비교하여 가장 저렴한곳을 찾아드립니다. 당진 지역 전문 업체의 솔루션으로 현명한 선택을 하세요.</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#overview">서비스 개요</a></li>
+        <li><a href="#products">상품 종류 및 특징</a></li>
+        <li><a href="#pricing">요금 비교 및 분석</a></li>
+        <li><a href="#saving-tips">절약 팁 및 혜택</a></li>
+        <li><a href="#reviews">실제 이용 후기</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+        <li><a href="#contact">견적/문의하기</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <section id="overview">
+    <h2>당진 인터넷 서비스 개요: 왜 당진 지역 전문 업체가 필요할까요?</h2>
+    <p>충청남도 당진시는 최근 몇 년간 인구가 증가하고 산업 단지가 확장되면서 인터넷 수요가 폭발적으로 증가했습니다. <span class="highlight">당진 인터넷</span> 가입을 고려하는 분들이라면, 단순히 저렴한 가격뿐만 아니라 안정적인 서비스 품질과 빠른 설치 속도가 중요합니다.</p>
+    <p>특히 당진 지역은 지리적으로 넓고, <span class="highlight">당진시내</span> 뿐만 아니라 송악읍, 신평면, 우강면, 합덕읍 등 외곽 지역의 설치 환경이 다양합니다. 각 통신사별로 설치 가능 지역이 다를 수 있으며, <span class="highlight">당진 인터넷 전문 업체</span>는 이러한 지역적 특성을 정확히 파악하여 가장 적합한 상품을 추천해 줄 수 있습니다. 2026년에는 AI, IoT 기술의 발달로 가정에서도 고화질 스트리밍, 대용량 파일 전송이 잦아지면서 기가인터넷 수요가 더욱 늘어날 것으로 예상됩니다.</p>
+    <p>이 가이드에서는 당진 지역의 인터넷 환경을 분석하고, 주요 통신사(KT, SK브로드밴드, LG유플러스) 상품의 장점과 단점, 그리고 <span class="highlight">저렴한곳</span>을 찾는 노하우를 제공합니다. 또한 신규 가입 시 받을 수 있는 <span class="highlight">현금지원</span> 및 <span class="highlight">사은품</span> 정보도 자세히 다룹니다.</p>
+    <h3>당진 지역별 인터넷 설치 환경 특징</h3>
+    <p>당진의 주요 거점 지역별로 인터넷 설치 환경이 상이합니다. <span class="highlight">당진1동, 당진2동, 당진3동</span>과 같은 도심 지역은 광케이블(FTTH) 설치가 용이하여 기가인터넷 사용이 일반적입니다. 반면, <span class="highlight">송악읍</span>, <span class="highlight">신평면</span>, <span class="highlight">고대면</span>, <span class="highlight">석문면</span>, <span class="highlight">대호지면</span>, <span class="highlight">정미면</span>, <span class="highlight">순성면</span>, <span class="highlight">우강면</span>, <span class="highlight">합덕읍</span>, <span class="highlight">면천면</span> 등의 농촌 및 외곽 지역은 아직 구형 케이블(HFC)을 사용하는 곳이 많아 100M 이하의 속도만 제공되는 경우도 있습니다. <span class="highlight">당진 인터넷 가입</span> 전에 반드시 주소지 조회를 통해 설치 가능한 최대 속도를 확인해야 합니다.</p>
+  </section>
+
+  <section id="products">
+    <h2>당진 인터넷 상품 종류 및 특징: 기가인터넷 vs 일반인터넷</h2>
+    <p>인터넷 상품은 크게 속도에 따라 100M, 500M, 1Gbps(기가인터넷) 등으로 구분됩니다. 당진 지역에서 제공되는 주요 상품들을 비교해 보겠습니다.</p>
+    <ul>
+      <li><strong>100Mbps 초고속 인터넷:</strong> 일반 가정에서 웹 서핑이나 가벼운 스트리밍에 적합한 상품입니다. 1인 가구 또는 인터넷 사용량이 많지 않은 경우에 <span class="highlight">가장 저렴한 상품</span>입니다. <span class="highlight">당진 인터넷 가격</span> 중 가장 낮은 <span class="highlight">견적</span>을 원할 때 선택합니다.</li>
+      <li><strong>500Mbps 기가 라이트 인터넷:</strong> 4K 고화질 영상 시청, 온라인 게임, 재택근무 등 다소 높은 사용량을 가진 가정에 적합합니다. 2~3인 가구에서 가장 선호하는 <span class="highlight">당진 인터넷 추천</span> 상품입니다.</li>
+      <li><strong>1Gbps 기가 인터넷:</strong> 초고속 데이터 전송이 필요한 경우에 적합합니다. 대용량 파일을 자주 다운로드하거나 업로드해야 하는 기업, 다인 가구, 고사양 게임 유저에게 필수적인 상품입니다. 2026년에는 <span class="highlight">AI</span> 및 <span class="highlight">ChatGPT</span>, <span class="highlight">Gemini</span>와 같은 서비스 이용 증가로 더욱 중요해지고 있습니다.</li>
+    </ul>
+
+    <h3>인터넷 결합 상품: TV, 전화, 모바일 결합의 장단점</h3>
+    <p>인터넷 가입 시 TV, 유선전화, 휴대폰과 결합하면 <span class="highlight">할인</span> 혜택을 받을 수 있습니다. <span class="highlight">당진 인터넷 업체</span>들은 보통 결합 상품을 주력으로 추천하며, 이를 통해 <span class="highlight">비용</span> 절감이 가능합니다. 특히 3사 통신사(KT, SKT, LG U+)의 휴대폰을 사용하고 있다면 결합 상품의 <span class="highlight">장점</span>이 극대화됩니다.</p>
+    <div class="section-subtitle">결합 상품의 장점</div>
+    <ul>
+        <li><strong>요금 할인:</strong> 휴대폰 요금에서 월 최대 수만원의 할인을 받을 수 있어 <span class="highlight">실질적인 비용 절감</span> 효과가 큽니다.</li>
+        <li><strong>사은품 증가:</strong> 결합 상품 가입 시 <span class="highlight">현금지원</span> 금액이나 <span class="highlight">상품권</span> 금액이 단독 상품보다 월등히 높습니다.</li>
+        <li><strong>편의성:</strong> 요금을 한 번에 관리할 수 있어 편리합니다.</li>
+    </ul>
+    <div class="section-subtitle">결합 상품의 단점</div>
+    <ul>
+        <li><strong>장기 약정:</strong> 보통 3년 약정으로 가입하며, 중도 해지 시 <span class="highlight">위약금</span>이 발생합니다.</li>
+        <li><strong>복잡한 요금제:</strong> 다양한 옵션으로 인해 <span class="highlight">장단점</span> 비교가 어렵습니다.</li>
+    </ul>
+  </section>
+
+  <section id="pricing">
+    <h2>2026년 당진 인터넷 요금 비교: 평균 가격 및 견적 분석</h2>
+    <p>당진 인터넷 요금은 통신사, 속도, 결합 여부, 약정 기간 등에 따라 달라집니다. 아래 표는 2026년 기준 주요 상품별 <span class="highlight">평균 가격</span> 범위를 정리한 것입니다. 정확한 <span class="highlight">견적</span>은 주소지 조회 후 <span class="highlight">당진 인터넷 전문 업체</span>에 문의해야 합니다.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>상품 유형</th>
+          <th>월 평균 요금 (VAT 포함)</th>
+          <th>주요 통신사별 특징</th>
+          <th>2026년 추천 사유</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>100Mbps 단독 (3년 약정)</td>
+          <td>22,000원 ~ 25,000원</td>
+          <td><span class="highlight">당진 인터넷 싼곳</span>을 찾는 1인 가구에 적합.</td>
+          <td>가성비가 좋지만, 4K 스트리밍에 다소 부족.</td>
+        </tr>
+        <tr>
+          <td>500Mbps 단독 (3년 약정)</td>
+          <td>33,000원 ~ 35,000원</td>
+          <td>가장 균형 잡힌 속도와 가격대.</td>
+          <td>대부분의 가정에서 만족하는 <span class="highlight">당진 인터넷 추천</span> 상품.</td>
+        </tr>
+        <tr>
+          <td>1Gbps 단독 (3년 약정)</td>
+          <td>38,500원 ~ 40,000원</td>
+          <td>고용량 데이터 사용이나 다인 가구에 적합.</td>
+          <td><span class="highlight">AI</span>, <span class="highlight">유튜브</span> 등 고화질 콘텐츠 이용자 증가에 따라 수요 급증.</td>
+        </tr>
+        <tr>
+          <td>인터넷+TV (1Gbps, 3년 약정)</td>
+          <td>48,000원 ~ 55,000원</td>
+          <td>통신사별 모바일 결합 시 추가 <span class="highlight">할인</span> 혜택 제공.</td>
+          <td>가장 많은 <span class="highlight">현금지원</span> 혜택을 받을 수 있는 상품.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart-container">
+      <canvas id="internetPricingChart" width="800" height="400" aria-label="당진 인터넷 상품별 월평균 요금 비교 그래프" role="img"></canvas>
+    </div>
+    <p>위 그래프는 당진 지역 주요 통신사별 상품의 월평균 요금을 시각화한 것입니다. <span class="highlight">당진 인터넷</span> 가입 시 <span class="highlight">비용</span> 절감을 위해 반드시 3년 약정 기준으로 비교해야 하며, <span class="highlight">현금지원</span> 금액을 포함한 총 <span class="highlight">예상 금액</span>을 따져봐야 합니다.</p>
+
+    <h3>통신사별 특징: KT, SKT, LG U+ 장단점 비교</h3>
+    <p>각 통신사별로 강점이 다르기 때문에 <span class="highlight">당진 인터넷 비교</span>를 통해 자신에게 맞는 통신사를 선택하는 것이 중요합니다.</p>
+    <ul>
+      <li><strong>KT:</strong> 광케이블 인프라가 가장 잘 구축되어 있어 <span class="highlight">당진시내</span> 뿐만 아니라 외곽 지역(예: <span class="highlight">송악읍</span>, <span class="highlight">신평면</span>, <span class="highlight">합덕읍</span>)에서도 안정적인 품질을 보장합니다. KT 휴대폰을 사용하는 고객에게는 결합 <span class="highlight">할인</span> 폭이 큽니다.</li>
+      <li><strong>SK브로드밴드:</strong> SKT 휴대폰 이용자가 가장 많이 선택하는 통신사입니다. 모바일 결합 상품의 혜택이 매우 좋으며, <span class="highlight">BTV</span>의 콘텐츠나 <span class="highlight">사은품</span> 금액이 경쟁력 있습니다.</li>
+      <li><strong>LG유플러스:</strong> U+ 휴대폰 이용자에게 큰 폭의 할인을 제공하며, 특히 <span class="highlight">AI</span> 스피커, IPTV 서비스에 강점을 보입니다. 당진 지역에서 <span class="highlight">신규 가입</span> 시 파격적인 <span class="highlight">현금지원</span> 프로모션을 진행하는 경우가 많습니다.</li>
+    </ul>
+  </section>
+
+  <section id="saving-tips">
+    <h2>2026년 당진 인터넷 요금 절감 방법 및 현금지원 혜택</h2>
+    <p>단순히 <span class="highlight">당진 인터넷 가격</span>만 보고 선택하면 손해 볼 수 있습니다. <span class="highlight">장점</span>과 <span class="highlight">단점</span>을 정확히 비교하고 <span class="highlight">현금지원</span> 혜택을 극대화하는 방법을 알아봅시다.</p>
+    <div class="section-subtitle">1. 결합 할인 및 제휴카드 활용</div>
+    <p>휴대폰 결합 할인은 필수입니다. 통신사별로 가족 구성원 수에 따라 할인율이 달라지므로, 가족 전체의 통신 요금을 확인해 <span class="highlight">당진 인터넷 가입</span>을 결정해야 합니다. 또한, 제휴 카드(예: 통신사 제휴 신용카드)를 발급받아 일정 금액 이상 사용하면 매월 추가 <span class="highlight">할인</span>을 받을 수 있습니다.</p>
+    <div class="section-subtitle">2. 사은품 및 현금지원 혜택 비교</div>
+    <p>인터넷 <span class="highlight">신규 가입</span> 시 받을 수 있는 <span class="highlight">사은품</span>은 크게 현금, 상품권, 그리고 기타 가전제품으로 나뉩니다. <span class="highlight">당진 인터넷 업체</span>마다 지급하는 <span class="highlight">현금지원</span> 금액이 다르므로, 여러 <span class="highlight">전문 업체</span>의 <span class="highlight">견적</span>을 받아 <span class="highlight">비교</span>하는 것이 중요합니다. <span class="highlight">디시</span>나 온라인 커뮤니티에서 <span class="highlight">당진 인터넷 후기</span>를 찾아보면 <span class="highlight">현금지원</span>을 많이 주는 <span class="highlight">업체</span> <span class="highlight">순위</span>를 확인할 수 있습니다.</p>
+    <div class="section-subtitle">3. 주거 형태에 따른 맞춤형 요금제 선택</div>
+    <p>당진의 <span class="highlight">아파트</span>, <span class="highlight">단독주택</span>, <span class="highlight">오피스텔</span> 등 주거 형태에 따라 설치 방식이 달라지므로 요금이 다를 수 있습니다. 특히 <span class="highlight">당진시내</span>가 아닌 <span class="highlight">농어촌 지역</span>의 단독주택은 설치 가능 여부와 속도를 반드시 확인해야 합니다. 100M 요금제와 기가인터넷 요금제의 <span class="highlight">차이점</span>은 <span class="highlight">가격</span> 외에도 설치 환경에 따라 체감 속도가 다를 수 있다는 점입니다.</p>
+    <div class="section-subtitle">4. 온라인 커뮤니티 및 후기 활용</div>
+    <p>네이버 블로그, <span class="highlight">구글</span> 검색, <span class="highlight">유튜브</span> 후기, 온라인 <span class="highlight">디시</span> 커뮤니티 등에서 <span class="highlight">당진 인터넷 내돈내산</span> 후기를 검색해 보세요. 실제 사용자들의 <span class="highlight">후기</span>를 통해 <span class="highlight">전문 업체</span>의 서비스 품질과 <span class="highlight">현금지원</span> <span class="highlight">금액</span>의 투명성을 확인할 수 있습니다. 많은 사람들이 <span class="highlight">추천</span>하는 <span class="highlight">업체</span>를 선택하는 것이 좋습니다.</p>
+  </section>
+
+  <section id="reviews">
+    <h2>당진 인터넷 내돈내산 후기 및 성공 사례</h2>
+    <div class="section-subtitle">당진시 A 아파트 주민의 후기</div>
+    <p>"당진으로 이사 오면서 인터넷 <span class="highlight">신규 가입</span>을 알아봤습니다. 여러 <span class="highlight">업체</span>에 <span class="highlight">견적</span>을 받아보니 <span class="highlight">가격</span>이 모두 다르더군요. <span class="highlight">당진 인터넷 전문 업체</span>에 문의한 결과, 저희 아파트에는 특정 통신사(KT)의 기가인터넷 설치가 가장 안정적이라고 <span class="highlight">추천</span>받았습니다. <span class="highlight">현금지원</span>도 기대 이상으로 많이 받았고, 설치 기사님도 <span class="highlight">당진시내</span> 전문가라 빠르게 설치해 주셨습니다. <span class="highlight">내돈내산</span>으로 가입했지만 만족도가 높습니다."</p>
+
+    <div class="section-subtitle">송악읍 S 단독주택 고객의 후기</div>
+    <p>"<span class="highlight">송악읍</span>으로 이사 후 기존에 쓰던 100M 인터넷이 너무 느려져서 <span class="highlight">기가인터넷</span>을 신청했습니다. 일반적인 <span class="highlight">당진 인터넷 업체</span>에서는 '설치가 어렵다'거나 '추가 <span class="highlight">비용</span>이 발생한다'고 했는데, <span class="highlight">전문 업체</span>에 문의하니 주소지 조회를 꼼꼼히 해주고 <span class="highlight">합덕읍</span> 쪽 설치 사례까지 설명해 주셔서 믿음이 갔습니다. 결과적으로 500M 속도로 안정적인 <span class="highlight">가입</span>이 가능했습니다. <span class="highlight">저렴한곳</span>을 찾다가 속도에서 실망할 뻔했는데, <span class="highlight">전문</span>가와 상담하니 <span class="highlight">장점</span>이 많네요."</p>
+
+    <div class="section-subtitle">당진 산업단지 B 기업 고객의 후기</div>
+    <p>"사무실 이전을 앞두고 <span class="highlight">당진 인터넷</span> 회선을 증설해야 했습니다. 업무용 인터넷은 안정성이 중요하기 때문에 <span class="highlight">싼곳</span>보다는 <span class="highlight">전문 업체</span>를 찾았습니다. <span class="highlight">당진시</span> 지역 전문가는 기업용 회선에 대한 이해도가 높아, 일반 가정용 상품과 <span class="highlight">차이점</span>을 명확히 설명해 주었습니다. <span class="highlight">가입</span> 후에도 관리가 잘 되고 있어 만족합니다. <span class="highlight">페이스북</span>이나 <span class="highlight">인스타그램</span> 홍보에서 본 <span class="highlight">현금지원</span> <span class="highlight">이벤트</span>도 실제로 적용받아 <span class="highlight">비용</span> 절감 효과도 있었습니다."</p>
+  </section>
+
+  <section id="faq" class="faq">
+    <h2>자주 묻는 질문 (FAQ)</h2>
+    <div class="item">
+      <h3>Q1: 당진 지역에서 <span class="highlight">기가인터넷</span> 설치가 가능한지 어떻게 확인하나요?</h3>
+      <p>A: <span class="highlight">당진 인터넷 전문 업체</span>에 문의하여 정확한 주소지를 알려주면 설치 가능 여부를 바로 확인할 수 있습니다. 특히 <span class="highlight">당진시내</span>가 아닌 <span class="highlight">합덕읍</span>, <span class="highlight">신평면</span>, <span class="highlight">송악읍</span> 등의 외곽 지역은 통신사별 인프라가 다르므로 반드시 사전 조회가 필요합니다. 2026년에는 광케이블망이 확장되면서 설치 가능 지역이 점차 늘어나고 있습니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q2: <span class="highlight">당진 인터넷 가격</span> <span class="highlight">비교</span> 시 <span class="highlight">현금지원</span> 금액도 중요한가요?</h3>
+      <p>A: 네, 매우 중요합니다. 월 <span class="highlight">요금</span>이 비슷한 경우에도 <span class="highlight">신규 가입</span> 시 받는 <span class="highlight">현금지원</span> 금액에 따라 총 <span class="highlight">비용</span>이 크게 달라집니다. <span class="highlight">당진 인터넷</span> <span class="highlight">전문 업체</span>는 통신사 본사보다 더 많은 <span class="highlight">사은품</span>이나 <span class="highlight">현금지원</span>을 제공하는 경우가 많습니다. <span class="highlight">가입</span> 전 반드시 <span class="highlight">예상</span> <span class="highlight">금액</span>과 <span class="highlight">지원금</span>을 꼼꼼히 <span class="highlight">비교</span>해야 <span class="highlight">저렴한곳</span>을 찾을 수 있습니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q3: <span class="highlight">당진 인터넷 추천</span> <span class="highlight">업체</span>는 어디인가요?</h3>
+      <p>A: <span class="highlight">당진 인터넷</span> <span class="highlight">전문 업체</span> <span class="highlight">추천</span> <span class="highlight">순위</span>를 살펴보는 것도 좋지만, 가장 중요한 것은 고객의 상황에 맞는 맞춤형 상담입니다. <span class="highlight">장점</span>과 <span class="highlight">단점</span>을 명확히 설명해 주고 <span class="highlight">현금지원</span> 규모가 큰 곳을 선택해야 합니다. <span class="highlight">내돈내산</span> 후기나 <span class="highlight">디시</span> 게시판 <span class="highlight">후기</span>를 참고하여 <span class="highlight">전문</span>성을 갖춘 <span class="highlight">업체</span>를 찾아보세요.</p>
+    </div>
+    <div class="item">
+      <h3>Q4: <span class="highlight">가입</span> 시 <span class="highlight">현금지원</span> <span class="highlight">이벤트</span>가 자주 바뀌나요?</h3>
+      <p>A: 네, <span class="highlight">현금지원</span> <span class="highlight">이벤트</span>는 통신사의 정책에 따라 매월 또는 분기별로 변경됩니다. <span class="highlight">당진 인터넷 전문 업체</span>는 이러한 <span class="highlight">이벤트</span> 정보를 빠르게 업데이트하여 고객에게 <span class="highlight">최대 혜택</span>을 제공합니다. <span class="highlight">신규 가입</span>을 결정할 때 현재 진행 중인 <span class="highlight">이벤트</span>를 확인하는 것이 중요합니다.</p>
+    </div>
+    <div class="item">
+      <h3>Q5: 인터넷 <span class="highlight">가입</span> 후 <span class="highlight">해지</span> 시 위약금은 <span class="highlight">얼마</span>인가요?</h3>
+      <p>A: 대부분의 <span class="highlight">당진 인터넷</span> 상품은 3년 약정 기준으로 <span class="highlight">가입</span>하며, 약정 기간 내 <span class="highlight">해지</span> 시 사용 기간에 따라 위약금이 발생합니다. 정확한 위약금 <span class="highlight">예상 금액</span>은 가입 시 받은 계약서나 통신사 고객센터를 통해 확인 가능합니다. <span class="highlight">가입</span> 시 <span class="highlight">장단점</span>을 충분히 고려해야 합니다.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>당진 인터넷 신규 가입 및 견적 문의</h2>
+    <p>아래 양식을 작성하시면 당진 지역 <span class="highlight">전문 업체</span>가 고객님의 주소지에 맞는 최적의 <span class="highlight">인터넷 상품</span>과 <span class="highlight">현금지원</span> <span class="highlight">혜택</span>을 안내해 드립니다. <span class="highlight">당진 인터넷 가격</span> <span class="highlight">비교</span>를 통해 가장 <span class="highlight">저렴한곳</span>을 찾을 수 있도록 도와드립니다.</p>
+    <form action="/submit-internet-quote" method="post" aria-label="당진 인터넷 견적 문의 폼">
+      <div class="input-section">
+        <div class="input-group">
+          <label for="name">고객명</label>
+          <input type="text" id="name" name="name" required placeholder="이름을 입력하세요" />
+        </div>
+        <div class="input-group">
+          <label for="contactNumber">연락처</label>
+          <input type="tel" id="contactNumber" name="contactNumber" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" placeholder="예: 010-1234-5678" required />
+        </div>
+        <div class="input-group">
+          <label for="address">설치 주소지 (읍/면/동) 및 상세 주소</label>
+          <input type="text" id="address" name="address" required placeholder="당진시 읍/면/동, 아파트명 또는 단독주택 주소" />
+        </div>
+        <div class="input-group">
+          <label for="desiredSpeed">희망 인터넷 속도</label>
+          <select id="desiredSpeed" name="desiredSpeed" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="100m">100Mbps (일반)</option>
+            <option value="500m">500Mbps (기가 라이트)</option>
+            <option value="1g">1Gbps (기가 인터넷)</option>
+            <option value="not-sure">상담 후 결정</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="additionalService">추가 희망 서비스 (복수 선택 가능)</label>
+          <select id="additionalService" name="additionalService" required>
+            <option value="" disabled selected>선택하세요</option>
+            <option value="tv-combo">TV 결합 상품 (IPTV)</option>
+            <option value="phone-combo">인터넷 전화 결합</option>
+            <option value="mobile-combo">모바일 결합 상품</option>
+            <option value="none">인터넷 단독 가입</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="preferredTime">상담 희망 시간대</label>
+          <input type="text" id="preferredTime" name="preferredTime" placeholder="예: 평일 오후 2시 이후" />
+        </div>
+        <div class="input-group" style="grid-column: 1 / -1;">
+          <label for="notes">추가 문의 사항 (현금지원 금액, 이벤트 문의 등)</label>
+          <textarea id="notes" name="notes" rows="4" placeholder="당진 인터넷 가입 관련 궁금한 점을 적어주세요. 예: 현재 사용 중인 통신사와 해지 위약금 문의."></textarea>
+        </div>
+      </div>
+      <button type="submit" class="cta-btn">무료 견적 요청하기</button>
+    </form>
+  </section>
+
+  <section id="external-resources">
+    <h2>신뢰할 수 있는 외부 참고자료 및 정보</h2>
+    <ul>
+      <li><a href="https://www.namu.wiki/w/%EC%9D%B8%ED%84%B0%EB%84%B7" target="_blank" rel="noopener" class="external-link">나무위키: 인터넷 (인터넷 서비스 종류 및 특징)</a></li>
+      <li><a href="https://www.kcomwel.or.kr/" target="_blank" rel="noopener" class="external-link">방송통신위원회 - 인터넷 가입자 피해 구제 정보</a></li>
+      <li><a href="https://www.msit.go.kr/index.do" target="_blank" rel="noopener" class="external-link">과학기술정보통신부 - 통신 관련 정책 및 법규</a></li>
+      <li><a href="https://www.dangjin.go.kr" target="_blank" rel="noopener" class="external-link">당진시청 - 지역 정보 및 생활 안내</a></li>
+      <li><a href="https://www.kisa.or.kr/main.do" target="_blank" rel="noopener" class="external-link">한국인터넷진흥원 (KISA) - 인터넷 품질 측정 사이트</a></li>
+    </ul>
+  </section>
+
+  <!-- Chart.js 라이브러리 로드 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('internetPricingChart').getContext('2d');
+    const internetPricingChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['100Mbps', '500Mbps (기가 라이트)', '1Gbps (기가 인터넷)', '인터넷+TV 결합'],
+        datasets: [{
+          label: '월평균 요금 (만원)',
+          data: [2.3, 3.4, 3.9, 5.2], /* 2.3만원, 3.4만원, 3.9만원, 5.2만원 */
+          backgroundColor: [
+            'rgba(0, 123, 255, 0.7)',
+            'rgba(0, 86, 179, 0.7)',
+            'rgba(0, 64, 128, 0.7)',
+            'rgba(0, 48, 96, 0.7)'
+          ],
+          borderColor: [
+            'rgba(0, 123, 255, 1)',
+            'rgba(0, 86, 179, 1)',
+            'rgba(0, 64, 128, 1)',
+            'rgba(0, 48, 96, 1)'
+          ],
+          borderWidth: 1,
+          hoverBackgroundColor: [
+            'rgba(0, 123, 255, 0.9)',
+            'rgba(0, 86, 179, 0.9)',
+            'rgba(0, 64, 128, 0.9)',
+            'rgba(0, 48, 96, 0.9)'
+          ]
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1,
+              callback: value => value + '만'
+            },
+            title: {
+              display: true,
+              text: '월 요금 (만원)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: '상품 종류'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: context => context.parsed.y + '만원'
+            }
+          }
+        }
+      }
+    });
+  </script>
+  
